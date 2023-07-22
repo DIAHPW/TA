@@ -1,0 +1,62 @@
+.logo-header[data-background-color=blue] {
+    background: #5BC8AC!important;
+}
+
+.navbar-header[data-background-color=blue2] {
+    background: #5BC8AC!important;
+}
+
+p {
+    font-family: poppins;
+}
+
+h3 {
+    font-family: poppins;
+    width: 450px;
+    margin-top :10px;
+}
+
+.card-stats .card-body {
+    padding: 35px 15px 35px 15px!important;
+}
+
+.page-item.active .page-link {
+    z-index: 1;
+    color: #fff;
+    background-color: #5BC8AC;
+    border-color: #5BC8AC;
+}
+body{
+    font-family: poppins;
+}
+
+.sidebar .nav-collapse li a .sub-item, .sidebar[data-background-color=white] .nav-collapse li a .sub-item {
+    font-size: 14px;
+    font-family: poppins;
+    position: relative;
+    margin-left: 25px;
+    opacity: .85;
+}
+
+.modal-detail .detail-heading p {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 0!important;
+}
+.modal-detail .detail-text p {
+    font-size: 14px;
+    font-weight: 400;
+    margin-bottom: 0!important;
+}
+
+.modal-detail .modal-title p {
+    font-size: 18px;
+    font-weight: 800!important;
+    margin-bottom: 0!important;
+}
+
+.modal-title p {
+    font-size: 18px;
+    font-weight: 800!important;
+    margin-bottom: 0!important;
+}
