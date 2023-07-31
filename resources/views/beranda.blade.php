@@ -107,13 +107,34 @@
 											<div class="col-ms col-stats ml-3 ml-sm-0">
 												<div class="numbers">
 													<p class="card-category">Anggota</p>
-													<h4 class="card-title">50</h4>
+													<h4 class="card-title">{{$total_anggota}}</h4>
 												</div>
 										 	</div>
 									 	</div>
 									 	<div class="col-md-6">
 										 	<div class="icon-big text-center icon-success bubble-shadow-small">
 												<i class="fa-solid fa-user-plus"></i>
+											</div>
+									 	</div>
+									</div>
+ 								</div>
+							</div>
+						</div>
+						<div class="col-sm-6 col-md-4">
+							<div class="card card-stats card-round">
+							   	<div class="card-body">
+								 	<div class="row align-items-center">
+										<div class="col-md-6">
+											<div class="col-ms col-stats ml-3 ml-sm-0">
+												<div class="numbers">
+													<p class="card-category">Pengunjung</p>
+													<h4 class="card-title">{{$total_pengunjung}}</h4>
+												</div>
+										 	</div>
+									 	</div>
+									 	<div class="col-md-6">
+										 	<div class="icon-big text-center icon-success bubble-shadow-small">
+												<i class="fa-solid fa-users"></i>
 											</div>
 									 	</div>
 									</div>
@@ -156,27 +177,6 @@
 									 	<div class="col-md-6">
 										 	<div class="icon-big text-center icon-success bubble-shadow-small">
 												<i class="fa-solid fa-right-left"></i>
-											</div>
-									 	</div>
-									</div>
- 								</div>
-							</div>
-						</div>
-						<div class="col-sm-6 col-md-4">
-							<div class="card card-stats card-round">
-							   	<div class="card-body">
-								 	<div class="row align-items-center">
-										<div class="col-md-6">
-											<div class="col-ms col-stats ml-3 ml-sm-0">
-												<div class="numbers">
-													<p class="card-category">Pengunjung</p>
-													<h4 class="card-title">50</h4>
-												</div>
-										 	</div>
-									 	</div>
-									 	<div class="col-md-6">
-										 	<div class="icon-big text-center icon-success bubble-shadow-small">
-												<i class="fa-solid fa-users"></i>
 											</div>
 									 	</div>
 									</div>

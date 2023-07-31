@@ -130,7 +130,7 @@
 														</div>
 														<div class="modal-body">
 															<p class="small">Silahkan Mengisi Data Anggota Dibawah !</p>
-															<form action="/data-kunjungan/{{$row->id}}" method="POST" enctype="multipart/form-data">
+															<form action="/data-pengunjung/{{$row->id}}" method="POST" enctype="multipart/form-data">
 																@csrf
 																<div class="row">
 																	<div class="col-sm-12 mb-3">

@@ -408,7 +408,7 @@
 							<div class="col-sm-12 mb-3">
 								<div class="row ">
 									<div class="col-md-3 d-flex align-items-center">
-										<label>Thn_Terbit</label>
+										<label>Tahun Terbit</label>
 									</div>
 									<div class="col-md-9">
 										<input id="addName" name="thn_terbit" type="text" class="form-control" placeholder="">
@@ -438,7 +438,7 @@
 							<div class="col-sm-12 mb-3">
 								<div class="row ">
 									<div class="col-md-3 d-flex align-items-center">
-										<label>No_Panggil</label>
+										<label>No Panggil</label>
 									</div>
 									<div class="col-md-9">
 										<input id="addName" name="no_panggil" type="text" class="form-control" placeholder="">

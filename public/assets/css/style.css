@@ -60,3 +60,41 @@ body{
     font-weight: 800!important;
     margin-bottom: 0!important;
 }
+
+/* button */
+.btn:not(:disabled):not(.disabled) {
+    cursor: pointer;
+    font-family: poppins;
+}
+
+.table>tbody>tr>td, .table>tbody>tr>th {
+    padding: 8px;
+    font-family: poppins!important;
+}
+
+.page-header .page-title {
+    margin-bottom: 0;
+    font-family: poppins!important;
+}
+
+li a {
+    color: #575962;
+    font-size: 13px;
+    font-family: poppins!important;
+}
+
+.fw-bold {
+    font-weight: 600!important;
+    font-family: poppins!important;
+}
+
+.fw-mediumbold {
+    font-size: 18px;
+    font-weight: 800!important;
+    font-family: poppins!important;
+}
+
+.text-light {
+    color: #f8f9fa!important;
+    font-family: poppins!important;
+}

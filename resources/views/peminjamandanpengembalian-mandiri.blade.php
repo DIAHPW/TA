@@ -83,10 +83,13 @@
                                             <th>No</th>
                                             <th>Nisn</th>
                                             <th>Nama</th>
+                                            <th>Judul Buku</th>
 											<th>No Panggil</th>
+											<th>Tanggal Peminjaman</th>
+											<th>Tanggal Pengembalian</th>
+											<th>Tanggal Perpanjang</th>
+											<th>Denda</th>
 											<th>Status</th>
-											
-											
                                             <th style="width: 10%">Aksi</th>
                                         </tr>
                                     </thead>
@@ -98,18 +101,27 @@
                                             <td>{{ $i++ }}</td> 
                                             <td>{{ $row->nisn }}</td>
                                             <td>{{ $row->nama }}</td>
+											<td>{{ $row->judul }}</td>
 											<td>{{ $row->id_buku }}</td>
-											<td>{{ $row->status ? 'diKembalikan':'diPinjam'}}</td>
+											<td>{{ $row->tgl_pinjam }}</td>
+											<td>{{ $row->tgl_kembali }}</td>
+											<td>{{ $row->tgl_perpanjang }}</td>
+											<td>{{ $row->denda }}</td>
+											<td>{{ $row->status ? 'Dikembalikan':'Dipinjam'}}</td>
 											
                                             <td>
                                                 <div class="form-button-action">
-                                                   
-													<a href="/data-anggota/delete/{{ $row->id }}">
-														<button type="button" data-toggle="tooltip" title="" class="btn btn-primary btn-round ml-auto" data-original-title="Hapus">
+													<a href="/peminjamandanpengembalian-mandiri/update/{{ $row->id }}">
+														<button type="button" data-toggle="tooltip" title="" class="btn btn-primary btn-round ml-auto" data-original-title="Kembalikan">
 															kembalikan
 														</button>
-														</a>
-													<a href="/data-anggota/delete/{{ $row->id }}">
+													</a>
+													<a href="/peminjamandanpengembalian-mandiri/perpanjang/{{ $row->id }}">
+														<button type="button" data-toggle="tooltip" title="" class="btn btn-success btn-round ml-auto" data-original-title="Kembalikan">
+															Perpanjang
+														</button>
+													</a>
+													<a href="/peminjamandanpengembalian-mandiri/delete/{{ $row->id }}">
                                                     <button type="button" data-toggle="tooltip" title="" class="btn btn-link btn-danger" data-original-title="Hapus">
                                                         <i class="fa-solid fa-trash-can"></i>
                                                     </button>
@@ -278,7 +290,7 @@
 							<div class="col-sm-12 mb-3">
 								<div class="row ">
 									<div class="col-md-3 d-flex align-items-center">
-										<label>Tanggal Pinjam</label>
+										<label>Tanggal Peminjaman</label>
 									</div>
 									<div class="col-md-9">
 										<input id="addName" name="tgl_pinjam" type="date" class="form-control" placeholder="">

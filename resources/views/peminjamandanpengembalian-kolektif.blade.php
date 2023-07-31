@@ -76,7 +76,7 @@
                             </div>
                         </div>
                         <div class="card-body">
-                            <!-- Modal -->
+                            <!-- Modal Tambah Peminjaman dan Pengembalian Kolektif-->
                             <div class="modal fade" id="addRowModal" tabindex="-1" role="dialog" aria-hidden="true">
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content">
@@ -93,85 +93,74 @@
                                         </div>
                                         <div class="modal-body">
                                             <p class="small"></p>
-                                            <form>
-                                                <div class="row">
-                                                    <div class="col-sm-12 mb-3">
-														<div class="row ">
-															<div class="col-md-2 d-flex align-items-center">
-																<label>Nisn</label>
-															</div>
-															<div class="col-md-10">
-																<input id="addName" type="text" class="form-control" placeholder="fill name">
-															</div>
-														</div>
-                                                    </div>
+                                            <form action="/peminjamandanpengembalian-kolektif" method="POST" enctype="multipart/form-data">
+												@csrf
+												<div class="row">
 													<div class="col-sm-12 mb-3">
 														<div class="row ">
-															<div class="col-md-2 d-flex align-items-center">
+															<div class="col-md-3 d-flex align-items-center">
+																<label>Nisn</label>
+															</div>
+															<div class="col-md-9">
+																<input id="addName" name="nisn" type="text" class="form-control" placeholder="">
+															</div>
+														</div>
+													</div>
+													<div class="col-sm-12 mb-3">
+														<div class="row ">
+															<div class="col-md-3 d-flex align-items-center">
 																<label>Nama</label>
 															</div>
-															<div class="col-md-10">
-																<input id="addName" type="text" class="form-control" placeholder="fill name">
+															<div class="col-md-9">
+																<input id="addName" name="nama" type="text" class="form-control" placeholder="">
 															</div>
 														</div>
-                                                    </div>
-                                                    <div class="col-sm-12 mb-3">
+													</div>	
+													<input type="hidden" name="id_buku" id="addName" value="{{$judul_buku[0]->id}}" >
+													<div class="col-sm-12 mb-3">
 														<div class="row ">
-															<div class="col-md-2 d-flex align-items-center">
-																<label>Id_Buku</label>
-															</div>
-															<div class="col-md-10">
-																<input id="addName" type="text" class="form-control" placeholder="fill name">
-															</div>
-														</div>
-                                                    </div>
-                                                    <div class="col-sm-12 mb-3">
-														<div class="row ">
-															<div class="col-md-2 d-flex align-items-center">
+															<div class="col-md-3 d-flex align-items-center">
 																<label>Judul</label>
 															</div>
-															<div class="col-md-10">
-																<input id="addName" type="text" class="form-control" placeholder="fill name">
+															<div class="col-md-9">
+																{{-- <input id="addName" type="text" class="form-control" placeholder="fill name"> --}}
+																<select name="judul" id="addName">
+																	<option value="">pilih</option>
+																	@foreach ($judul_buku as $jb)
+																	<option value="{{$jb->judul}}">{{$jb->judul}}</option>
+																	@endforeach
+																</select>
 															</div>
 														</div>
-                                                    </div>
-                                                    <div class="col-sm-12 mb-3">
+													</div>
+													<div class="col-sm-12 mb-3">
 														<div class="row ">
-															<div class="col-md-2 d-flex align-items-center">
-																<label>Tgl_Pinjam</label>
-															</div>
-															<div class="col-md-10">
-																<input id="addName" type="text" class="form-control" placeholder="fill name">
-															</div>
-														</div>
-                                                    </div>
-                                                    <div class="col-sm-12 mb-3">
-														<div class="row ">
-															<div class="col-md-2 d-flex align-items-center">
-																<label>Lama_Pinjam</label>
-															</div>
-															<div class="col-md-10">
-																<input id="addName" type="text" class="form-control" placeholder="fill name">
-															</div>
-														</div>
-                                                    </div>
-                                                    <div class="col-sm-12 mb-3">
-														<div class="row ">
-															<div class="col-md-2 d-flex align-items-center">
+															<div class="col-md-3 d-flex align-items-center">
 																<label>Jumlah</label>
 															</div>
-															<div class="col-md-10">
-																<input id="addName" type="text" class="form-control" placeholder="fill name">
+															<div class="col-md-9">
+																<input id="addName" name="jumlah" type="text" class="form-control" placeholder="">
 															</div>
 														</div>
-                                                    </div>
-                                                </div>
-                                            </form>
+													</div>
+													<div class="col-sm-12 mb-3">
+														<div class="row ">
+															<div class="col-md-3 d-flex align-items-center">
+																<label>Tanggal Pinjam</label>
+															</div>
+															<div class="col-md-9">
+																<input id="addName" name="tgl_pinjam" type="date" class="form-control" placeholder="">
+															</div>
+														</div>
+													</div>
+												</div>
+												<div class="modal-footer no-bd">
+													<button type="submit" class="btn btn-primary">Tambah</button>
+													<button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
+												</div>
+											</form>
                                         </div>
-                                        <div class="modal-footer no-bd">
-                                            <button type="button" id="addRowButton" class="btn btn-primary">Tambah</button>
-                                            <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
-                                        </div>
+                                        
                                     </div>
                                 </div>
                             </div>
@@ -180,30 +169,47 @@
                                 <table id="add-row" class="display table table-striped table-hover" >
                                     <thead>
                                         <tr>
-                                            <th>No</th>
+											<th>No</th>
                                             <th>Nisn</th>
                                             <th>Nama</th>
-                                            <th>Id_Buku</th>
+											<th>Judul Buku</th>
+											<th>Jumlah</th>
+											<th>Tanggal Peminjaman</th>
+											<th>Status</th>
                                             <th style="width: 10%">Aksi</th>
                                         </tr>
                                     </thead>
                                     <tbody>
+										<?php $i=1;?>
+										@foreach ($pp_kolektif as $row)
+										@csrf
                                         <tr>
-                                            <td>1</td>
-                                            <td>Tiger Nixon</td>
-                                            <td>System Architect</td>
-                                            <td>Edinburgh</td>
-                                            <td>
-                                                <div class="form-button-action">
-                                                    <button type="button" data-toggle="tooltip" title="" class="btn btn-link btn-primary btn-lg" data-original-title="Edit Task">
-                                                        <i class="fa fa-edit"></i>
-                                                    </button>
+                                            <td>{{ $i++ }}</td> 
+                                            <td>{{ $row->nisn }}</td>
+                                            <td>{{ $row->nama }}</td>
+											<td>{{ $row->judul }}</td>
+											<td>{{ $row->jumlah }}</td>
+											<td>{{ $row->tgl_pinjam }}</td>
+											<td>{{ $row->status ? 'Dikembalikan':'Dipinjam'}}</td>
+											<td>
+												<div class="form-button-action">
+													<a href="/peminjamandanpengembalian-kolektif/update/{{ $row->id }}">
+																							
+														<button type="submit" data-toggle="tooltip" title="" class="btn btn-primary btn-round ml-auto" data-original-title="Kembalikan">
+															kembalikan
+														</button>
+														</a>
+													<a href="/peminjamandanpengembalian-kolektif/delete/{{ $row->id }}">
                                                     <button type="button" data-toggle="tooltip" title="" class="btn btn-link btn-danger" data-original-title="Hapus">
                                                         <i class="fa-solid fa-trash-can"></i>
                                                     </button>
+													</a>
                                                 </div>
+											</td>
+                                               
                                             </td>
                                         </tr>
+										@endforeach
                                     </tbody>
                                 </table>
                             </div>

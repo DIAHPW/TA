@@ -13,22 +13,19 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('ppmandiri', function (Blueprint $table) {
+        Schema::create('ppkolektif', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('id_buku');
             $table->string('nisn');
             $table->string('nama');
             $table->string('judul');
+            $table->string('jumlah');
             $table->date('tgl_pinjam');
-            $table->date('tgl_kembali')->nullable();
-            $table->date('tgl_perpanjang')->nullable();
-            $table->integer('denda')->default(0);
             $table->boolean('status')->default(false);
-
-
-            $table->foreign('id_buku')->references('id')->on('databukus');
             $table->timestamps();
         });
+
+        
     }
 
     /**
@@ -38,6 +35,9 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('ppmandiri');
+        Schema::table('ppkolektif', function (Blueprint $table) {
+            $table->dropColumn('status');
+        });
+    
     }
 };
