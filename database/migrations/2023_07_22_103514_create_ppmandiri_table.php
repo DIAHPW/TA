@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('nisn');
             $table->string('nama');
             $table->string('judul');
+            $table->string('no_panggil');
             $table->date('tgl_pinjam');
             $table->date('tgl_kembali')->nullable();
             $table->date('tgl_perpanjang')->nullable();

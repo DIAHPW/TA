@@ -27,6 +27,9 @@
     <link rel="stylesheet" href="../assets/css/style.css">
     {{-- Font awesome --}}
     <script src="https://kit.fontawesome.com/1266dcde92.js" crossorigin="anonymous"></script>
+	  {{-- Sweetalert --}}
+	  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> 
+	
 
 </head>
 <body>
@@ -102,7 +105,7 @@
 														<i class="fa fa-edit"></i>
 													</button>
 													<a href="/data-buku/delete/{{ $row->id }}">
-                                                    <button type="button"  data-toggle="tooltip" title="Delete" class="btn btn-link btn-danger" data-original-title="Delete ">
+                                                    <button type="button"  data-toggle="tooltip" onclick="showSweetAlert()" title="Delete" class="btn btn-link btn-danger" data-original-title="Delete ">
                                                         <i class="fa-solid fa-trash-can"></i>
                                                     </button>
 													</a>
@@ -140,7 +143,7 @@
 																			<label>Judul</label>
 																		</div>
 																		<div class="col-md-9">
-																			<input id="addName" value="{{ $row->judul}}" name="judul" type="text" class="form-control" placeholder="">
+																			<input id="addName" value="{{ $row->judul}}" name="judul" type="text" class="form-control" placeholder="" required>
 																		</div>
 																	</div>
 																</div>
@@ -150,7 +153,7 @@
 																			<label>Pengarang</label>
 																		</div>
 																		<div class="col-md-9">
-																			<input id="addName" value="{{ $row->pengarang}}" name="pengarang" type="text" class="form-control" placeholder="">
+																			<input id="addName" value="{{ $row->pengarang}}" name="pengarang" type="text" class="form-control" placeholder="" required>
 																		</div>
 																	</div>
 																</div>
@@ -160,7 +163,7 @@
 																			<label>Penerbit</label>
 																		</div>
 																		<div class="col-md-9">
-																			<input id="addName" value="{{ $row->penerbit}}" name="penerbit" type="text" class="form-control" placeholder="">
+																			<input id="addName" value="{{ $row->penerbit}}" name="penerbit" type="text" class="form-control" placeholder="" required>
 																		</div>
 																	</div>
 																</div>
@@ -170,7 +173,7 @@
 																			<label>Tahun Terbit</label>
 																		</div>
 																		<div class="col-md-9">
-																			<input id="addName" value="{{ $row->thn_terbit}}" name="thn_terbit" type="text" class="form-control" placeholder="">
+																			<input id="addName" value="{{ $row->thn_terbit}}" name="thn_terbit" type="text" class="form-control" placeholder="" required>
 																		</div>
 																	</div>
 																</div>
@@ -180,7 +183,7 @@
 																			<label>Kategori Buku</label>
 																		</div>
 																		<div class="col-md-9">
-																			<input id="addName" value="{{ $row->kategori_buku}}" name="kategori_buku" type="text" class="form-control" placeholder="">
+																			<input id="addName" value="{{ $row->kategori_buku}}" name="kategori_buku" type="text" class="form-control" placeholder="" required>
 																		</div>
 																	</div>
 																</div>
@@ -190,7 +193,7 @@
 																			<label>ISBN</label>
 																		</div>
 																		<div class="col-md-9">
-																			<input id="addName" value="{{ $row->ISBN}}" name="ISBN" type="text" class="form-control" placeholder="">
+																			<input id="addName" value="{{ $row->ISBN}}" name="ISBN" type="text" class="form-control" placeholder="" required>
 																		</div>
 																	</div>
 																</div>
@@ -200,7 +203,7 @@
 																			<label>No Panggil</label>
 																		</div>
 																		<div class="col-md-9">
-																			<input id="addName" value="{{ $row->no_panggil}}" name="no_panggil" type="text" class="form-control" placeholder="">
+																			<input id="addName" value="{{ $row->no_panggil}}" name="no_panggil" type="text" class="form-control" placeholder="" required>
 																		</div>
 																	</div>
 																</div>
@@ -210,7 +213,7 @@
 																			<label>Stok</label>
 																		</div>
 																		<div class="col-md-9">
-																			<input id="addName" value="{{ $row->stok}}" name="stok" type="text" class="form-control" placeholder="">
+																			<input id="addName" value="{{ $row->stok}}" name="stok" type="text" class="form-control" placeholder="" required>
 																		</div>
 																	</div>
 																</div>
@@ -220,13 +223,13 @@
 																			<label>Sumber</label>
 																		</div>
 																		<div class="col-md-9">
-																			<input id="addName" value="{{ $row->sumber}}" name="sumber" type="text" class="form-control" placeholder="">
+																			<input id="addName" value="{{ $row->sumber}}" name="sumber" type="text" class="form-control" placeholder="" required>
 																		</div>
 																	</div>
 																</div>
 															</div>
 															<div class="modal-footer no-bd">
-																<button type="submit" class="btn btn-primary">Edit</button>
+																<button type="submit" onclick="showSweetAlertEdit()" class="btn btn-primary">Edit</button>
 																<button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
 															</div>
 														</form>
@@ -253,14 +256,6 @@
 														</button>
 													</div>
 													<div class="modal-body">
-														<div class="mb-2">
-															<div class="detail-heading">
-																<p>Kode Buku</p>
-															</div>
-															<div class="detail-text">
-																<p>{{$row->id}}</p>
-															</div>
-														</div>
 														<div class="mb-2">
 															<div class="detail-heading">
 																<p>Judul Buku</p>
@@ -372,7 +367,7 @@
 				</div>
 				<div class="modal-body">
 					<p class="small">Silahkan Mengisi Data Buku Dibawah !</p>
-					<form action="/data-buku" method="POST" enctype="multipart/form-data">
+					<form action="/data-buku/tambah" method="POST" enctype="multipart/form-data">
 						@csrf
 						<div class="row">
 							<div class="col-sm-12 mb-3">
@@ -381,7 +376,7 @@
 										<label>Judul</label>
 									</div>
 									<div class="col-md-9">
-										<input id="addName" name="judul" type="text" class="form-control" placeholder="">
+										<input id="addName" name="judul" type="text" class="form-control" placeholder="" required>
 									</div>
 								</div>
 							</div>
@@ -391,7 +386,7 @@
 										<label>Pengarang</label>
 									</div>
 									<div class="col-md-9">
-										<input id="addName" name="pengarang" type="text" class="form-control" placeholder="">
+										<input id="addName" name="pengarang" type="text" class="form-control" placeholder="" required>
 									</div>
 								</div>
 							</div>
@@ -401,7 +396,7 @@
 										<label>Penerbit</label>
 									</div>
 									<div class="col-md-9">
-										<input id="addName" name="penerbit" type="text" class="form-control" placeholder="">
+										<input id="addName" name="penerbit" type="text" class="form-control" placeholder="" required>
 									</div>
 								</div>
 							</div>
@@ -411,17 +406,21 @@
 										<label>Tahun Terbit</label>
 									</div>
 									<div class="col-md-9">
-										<input id="addName" name="thn_terbit" type="text" class="form-control" placeholder="">
+										<input id="addName" name="thn_terbit" type="text" class="form-control" placeholder="" required>
 									</div>
 								</div>
 							</div>
 							<div class="col-sm-12 mb-3">
 								<div class="row ">
 									<div class="col-md-3 d-flex align-items-center">
-										<label>Kategori_Buku</label>
+										<label>Kategori Buku</label>
 									</div>
 									<div class="col-md-9">
-										<input id="addName" name="kategori_buku" type="text" class="form-control" placeholder="">
+										<select class="form-select" aria-label="Default select example" name="kategori_buku" required>
+											<option selected>Pilih Kategori</option>
+											<option value="Fiksi">Fiksi</option>
+											<option value="Non Fiksi">Non Fiksi</option>
+										  </select>
 									</div>
 								</div>
 							</div>
@@ -431,7 +430,7 @@
 										<label>ISBN</label>
 									</div>
 									<div class="col-md-9">
-										<input id="addName" name="ISBN" type="text" class="form-control" placeholder="">
+										<input id="addName" name="ISBN" type="text" class="form-control" placeholder="" required>
 									</div>
 								</div>
 							</div>
@@ -441,7 +440,7 @@
 										<label>No Panggil</label>
 									</div>
 									<div class="col-md-9">
-										<input id="addName" name="no_panggil" type="text" class="form-control" placeholder="">
+										<input id="addName" name="no_panggil" type="text" class="form-control" placeholder="" required>
 									</div>
 								</div>
 							</div>
@@ -451,7 +450,7 @@
 										<label>Stok</label>
 									</div>
 									<div class="col-md-9">
-										<input id="addName" name="stok" type="text" class="form-control" placeholder="">
+										<input id="addName" name="stok" type="text" class="form-control" placeholder="" required>
 									</div>
 								</div>
 							</div>
@@ -461,13 +460,13 @@
 										<label>Sumber</label>
 									</div>
 									<div class="col-md-9">
-										<input id="addName" name="sumber" type="text" class="form-control" placeholder="">
+										<input id="addName" name="sumber" type="text" class="form-control" placeholder="" required>
 									</div>
 								</div>
 							</div>
 						</div>
 						<div class="modal-footer no-bd">
-							<button type="submit" class="btn btn-primary">Tambah</button>
+							<button type="submit" onclick="showSweetAlertTambah()" class="btn btn-primary">Tambah</button>
 							<button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
 						</div>
 					</form>
@@ -545,8 +544,60 @@
 	</script>
     
 </div>
-
-
-
 </body>
 </html>
+
+<script>
+	function showSweetAlert() {
+		swal({
+			title: 'HAPUS DATA',
+			text: 'Data Berhasil di Hapus',
+			icon: 'success',
+			buttons: {
+				cancel: {
+					text: 'OK',
+					value: null,
+					visible: true,
+					className: 'btn btn-primary'
+				}
+			}
+		});
+	}
+
+	function showSweetAlertTambah() {
+		swal({
+			title: 'TAMBAH DATA',
+			text: 'Data Berhasil di Tambah',
+			icon: 'success',
+			buttons: {
+				cancel: {
+					text: 'OK',
+					value: null,
+					visible: true,
+					className: 'btn btn-primary'
+				}
+			}
+		});
+	}
+
+	function showSweetAlertEdit() {
+		swal({
+			title: 'EDIT DATA',
+			text: 'Data Berhasil di Edit',
+			icon: 'success',
+			buttons: {
+				cancel: {
+					text: 'OK',
+					value: null,
+					visible: true,
+					className: 'btn btn-primary'
+				}
+			}
+		});
+	}
+</script>
+
+<script>
+	function display
+	element.style.display = "none";
+</script>

@@ -27,7 +27,8 @@
     <link rel="stylesheet" href="../assets/css/style.css">
      {{-- Font awesome --}}
      <script src="https://kit.fontawesome.com/1266dcde92.js" crossorigin="anonymous"></script>
-	 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+	   {{-- Sweetalert --}}
+	   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> 
 
 </head>
 <body>
@@ -104,7 +105,7 @@
                                                         <i class="fa fa-edit"></i>
                                                     </button>
 													<a href="/data-pengunjung/delete/{{ $row->id }}">
-                                                    <button type="button" data-toggle="tooltip" title="" onclick="btnHapus" class="btn btn-link btn-danger" data-original-title="Hapus">
+                                                    <button type="button" data-toggle="tooltip" title="" onclick="showSweetAlert()" onclick="btnHapus" class="btn btn-link btn-danger" data-original-title="Hapus">
                                                         <i class="fa-solid fa-trash-can"></i>
                                                     </button>
 													</a>
@@ -165,7 +166,7 @@
 																	</div>
 																</div>
 																<div class="modal-footer no-bd">
-																	<button type="submit" class="btn btn-primary">Tambah</button>
+																	<button type="submit" onclick="showSweetAlertEdit()" class="btn btn-primary">Edit</button>
 																	<button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
 																</div>
 															</form>
@@ -243,8 +244,8 @@
 							</div>
 						</div>
 						<div class="modal-footer no-bd">
-							<button type="submit" class="btn btn-primary">Tambah</button>
-							<button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
+							<button type="submit" onclick="showSweetAlertTambah()" class="btn btn-primary">Tambah</button>
+							<button type="button"  class="btn btn-danger" data-dismiss="modal">Batal</button>
 						</div>
 					</form>
 				</div>
@@ -443,12 +444,56 @@
 </body>
 </html>
 <script>
-	
-	Swal.fire({
-	position: 'top-end',
-	icon: 'success',
-	title: 'Your work has been saved',
-	showConfirmButton: false,
-	timer: 1500
-  })
+	function showSweetAlert() {
+		swal({
+			title: 'HAPUS DATA',
+			text: 'Data Berhasil di Hapus',
+			icon: 'success',
+			buttons: {
+				cancel: {
+					text: 'OK',
+					value: null,
+					visible: true,
+					className: 'btn btn-primary'
+				}
+			}
+		});
+	}
+
+	function showSweetAlertTambah() {
+		swal({
+			title: 'TAMBAH DATA',
+			text: 'Data Berhasil di Tambah',
+			icon: 'success',
+			buttons: {
+				cancel: {
+					text: 'OK',
+					value: null,
+					visible: true,
+					className: 'btn btn-primary'
+				}
+			}
+		});
+	}
+
+	function showSweetAlertEdit() {
+		swal({
+			title: 'EDIT DATA',
+			text: 'Data Berhasil di Edit',
+			icon: 'success',
+			buttons: {
+				cancel: {
+					text: 'OK',
+					value: null,
+					visible: true,
+					className: 'btn btn-primary'
+				}
+			}
+		});
+	}
+</script>
+
+<script>
+	function display
+	element.style.display = "none";
 </script>

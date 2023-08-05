@@ -98,3 +98,24 @@ li a {
     color: #f8f9fa!important;
     font-family: poppins!important;
 }
+
+.form-select{
+    width:343.5px;
+    height:41.8px;
+    border-radius:0.25rem;
+    border-color:#ebedf2;
+    padding:0.6rem 1rem;
+    font-size:14px;
+}
+
+.btn-primary:disabled, .btn-primary:focus, .btn-primary:hover {
+    background: #1572e8!important;
+    border-color: #1572e8!important;
+    font-family: poppins!important;
+}
+
+.btn-success:disabled, .btn-success:focus, .btn-success:hover {
+    background: #31ce36!important;
+    border-color: #31ce36!important;
+    font-family: poppins!important;
+}

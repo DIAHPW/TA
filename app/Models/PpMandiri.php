@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Databuku;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class PpMandiri extends Model
 {
@@ -12,6 +13,6 @@ class PpMandiri extends Model
     use HasFactory;
 
     public function bukus(){
-        return $this->hasMany(DataBuku::class);
+        return $this->hasMany(Databuku::class);
     }
 }

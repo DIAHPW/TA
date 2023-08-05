@@ -26,12 +26,17 @@ Route::get('/laporan',[AdminController::class,'Laporan']);
 
 /* Admin - Data Buku  */
 Route::get('/data-buku',[AdminController::class,'DataBuku'])->name('data-buku');
+
 //create
-Route::post('/data-buku',[AdminController::class,'TambahDataBuku']);
+Route::post('/data-buku/tambah',[AdminController::class,'TambahDataBuku']);
 //Update
 Route::post('/data-buku/{id}',[AdminController::class,'UpdateDataBuku']);
 //Delete
 Route::get('/data-buku/delete/{id}',[AdminController::class,'DeleteDataBuku']);
+//stok
+// input validation
+// Route::get('/data-buku/search',[AdminController::class,'search']);
+
 /* ----------------------------------------------------------------------------------------------------------------------------- */
 
 /* Admin - Data Anggota */

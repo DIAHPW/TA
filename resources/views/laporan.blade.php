@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-	<title>Transaksi</title>
+	<title>Laporan</title>
 	<meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport' />
 	<link rel="icon" href="../assets/img/icon.ico" type="image/x-icon"/>
 
@@ -27,6 +27,10 @@
     <link rel="stylesheet" href="../assets/css/style.css">
      {{-- Font awesome --}}
      <script src="https://kit.fontawesome.com/1266dcde92.js" crossorigin="anonymous"></script>
+	{{-- css button data table --}}
+	 <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.3.1/js/dataTables.buttons.min.js"></script> 
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+	<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.3.1/js/buttons.html5.min.js"></script>
 
 </head>
 <body>
@@ -48,7 +52,7 @@
     <div class="content">
         <div class="page-inner">
             <div class="page-header">
-                <h4 class="page-title">Transaksi</h4>
+                <h4 class="page-title">Laporan</h4>
                 <ul class="breadcrumbs">
                     <li class="nav-home">
                         <a href="#">
@@ -59,7 +63,7 @@
                         <i class="flaticon-right-arrow"></i>
                     </li>
                     <li class="nav-item">
-                        <a href="#">Transaksi</a>
+                        <a href="#">Laporan</a>
                     </li>
                 </ul>
             </div>

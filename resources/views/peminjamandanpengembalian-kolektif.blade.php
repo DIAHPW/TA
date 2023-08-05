@@ -27,6 +27,12 @@
     <link rel="stylesheet" href="../assets/css/style.css">
      {{-- Font awesome --}}
      <script src="https://kit.fontawesome.com/1266dcde92.js" crossorigin="anonymous"></script>
+	   {{-- Sweetalert --}}
+	   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> 
+	   {{-- css data table --}}
+	   {{-- <link rel="stylesheet" href="//cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
+	   <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.4.1/css/buttons.dataTables.min.css"> --}}
+	  
 
 </head>
 <body>
@@ -119,12 +125,12 @@
 													<input type="hidden" name="id_buku" id="addName" value="{{$judul_buku[0]->id}}" >
 													<div class="col-sm-12 mb-3">
 														<div class="row ">
-															<div class="col-md-3 d-flex align-items-center">
+															<div class="col-md-3 d-flex align-items-center" >
 																<label>Judul</label>
 															</div>
 															<div class="col-md-9">
 																{{-- <input id="addName" type="text" class="form-control" placeholder="fill name"> --}}
-																<select name="judul" id="addName">
+																<select name="judul" id="addName" class="form-select">
 																	<option value="">pilih</option>
 																	@foreach ($judul_buku as $jb)
 																	<option value="{{$jb->judul}}">{{$jb->judul}}</option>
@@ -155,7 +161,7 @@
 													</div>
 												</div>
 												<div class="modal-footer no-bd">
-													<button type="submit" class="btn btn-primary">Tambah</button>
+													<button type="submit" onclick="showSweetAlertTambah()" class="btn btn-primary">Tambah</button>
 													<button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
 												</div>
 											</form>
@@ -195,12 +201,12 @@
 												<div class="form-button-action">
 													<a href="/peminjamandanpengembalian-kolektif/update/{{ $row->id }}">
 																							
-														<button type="submit" data-toggle="tooltip" title="" class="btn btn-primary btn-round ml-auto" data-original-title="Kembalikan">
+														<button type="submit" data-toggle="tooltip" title="" onclick="showSweetAlertKembali()" class="btn btn-primary btn-round ml-auto" data-original-title="Kembalikan" {{$row->status ? 'disabled' :''}}>
 															kembalikan
 														</button>
 														</a>
 													<a href="/peminjamandanpengembalian-kolektif/delete/{{ $row->id }}">
-                                                    <button type="button" data-toggle="tooltip" title="" class="btn btn-link btn-danger" data-original-title="Hapus">
+                                                    <button type="button" data-toggle="tooltip" title="" onclick="showSweetAlert()" class="btn btn-link btn-danger" data-original-title="Hapus">
                                                         <i class="fa-solid fa-trash-can"></i>
                                                     </button>
 													</a>
@@ -309,12 +315,40 @@
 	<script src="../../assets/js/atlantis.min.js"></script>
 	<!-- Atlantis DEMO methods, don't include it in your project! -->
 	<script src="../../assets/js/setting-demo2.js"></script>
+	 {{-- css button data table --}}
+	 <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.3.1/js/dataTables.buttons.min.js"></script> 
+	 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+	 <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.3.1/js/buttons.html5.min.js"></script>
 	<script >
 		$(document).ready(function() {
 			$('#basic-datatables').DataTable({
 			});
 
 			$('#multi-filter-select').DataTable( {
+				"processing": true,
+                "serverSide": true,
+                dom: 'Bfrtip',
+                buttons: [{
+                        extend: 'copy',
+                        className: 'btn btn-primary glyphicon glyphicon-duplicate d-none'
+                    },
+                    {
+                        extend: 'csv',
+                        className: 'btn btn-primary glyphicon glyphicon-save-file d-none'
+                    },
+                    {
+                        extend: 'excel',
+                        className: 'btn btn-primary glyphicon glyphicon-list-alt d-none'
+                    },
+                    {
+                        extend: 'pdf',
+                        className: 'btn btn-primary glyphicon glyphicon-file '
+                    },
+                    {
+                        extend: 'print',
+                        className: 'btn btn-primary glyphicon glyphicon-print d-none'
+                    }
+                ],
 				"pageLength": 5,
 				initComplete: function () {
 					this.api().columns().every( function () {
@@ -329,6 +363,7 @@
 							column
 							.search( val ? '^'+val+'$' : '', true, false )
 							.draw();
+							
 						} );
 
 						column.data().unique().sort().each( function ( d, j ) {
@@ -341,6 +376,7 @@
 			// Add Row
 			$('#add-row').DataTable({
 				"pageLength": 5,
+				
 			});
 
 			var action = '<td> <div class="form-button-action"> <button type="button" data-toggle="tooltip" title="" class="btn btn-link btn-primary btn-lg" data-original-title="Edit Task"> <i class="fa fa-edit"></i> </button> <button type="button" data-toggle="tooltip" title="" class="btn btn-link btn-danger" data-original-title="Remove"> <i class="fa fa-times"></i> </button> </div> </td>';
@@ -361,3 +397,57 @@
 </div>
 </body>
 </html>
+<script>
+	function showSweetAlert() {
+		swal({
+			title: 'HAPUS DATA',
+			text: 'Data Berhasil di Hapus',
+			icon: 'success',
+			buttons: {
+				cancel: {
+					text: 'OK',
+					value: null,
+					visible: true,
+					className: 'btn btn-primary'
+				}
+			}
+		});
+	}
+
+	function showSweetAlertTambah() {
+		swal({
+			title: 'TAMBAH DATA',
+			text: 'Data Berhasil di Tambah',
+			icon: 'success',
+			buttons: {
+				cancel: {
+					text: 'OK',
+					value: null,
+					visible: true,
+					className: 'btn btn-primary'
+				}
+			}
+		});
+	}
+
+	function showSweetAlertKembali() {
+		swal({
+			title: 'KEMBALI',
+			text: 'Buku Telah di Kembalikan',
+			icon: 'success',
+			buttons: {
+				cancel: {
+					text: 'OK',
+					value: null,
+					visible: true,
+					className: 'btn btn-primary'
+				}
+			}
+		});
+	}
+</script>
+
+<script>
+	function display
+	element.style.display = "none";
+</script>

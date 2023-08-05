@@ -27,6 +27,8 @@
     <link rel="stylesheet" href="../assets/css/style.css">
      {{-- Font awesome --}}
      <script src="https://kit.fontawesome.com/1266dcde92.js" crossorigin="anonymous"></script>
+	   {{-- Sweetalert --}}
+	   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> 
 
 </head>
 <body>
@@ -102,7 +104,7 @@
                                             <td>{{ $row->nisn }}</td>
                                             <td>{{ $row->nama }}</td>
 											<td>{{ $row->judul }}</td>
-											<td>{{ $row->id_buku }}</td>
+											<td>{{ $row->id }}</td>
 											<td>{{ $row->tgl_pinjam }}</td>
 											<td>{{ $row->tgl_kembali }}</td>
 											<td>{{ $row->tgl_perpanjang }}</td>
@@ -112,17 +114,17 @@
                                             <td>
                                                 <div class="form-button-action">
 													<a href="/peminjamandanpengembalian-mandiri/update/{{ $row->id }}">
-														<button type="button" data-toggle="tooltip" title="" class="btn btn-primary btn-round ml-auto" data-original-title="Kembalikan">
+														<button type="button" data-toggle="tooltip" title="" onclick="showSweetAlertKembali()"  class="btn btn-primary btn-round ml-auto" data-original-title="Kembalikan" {{$row->status ? 'disabled' :''}}>
 															kembalikan
 														</button>
 													</a>
 													<a href="/peminjamandanpengembalian-mandiri/perpanjang/{{ $row->id }}">
-														<button type="button" data-toggle="tooltip" title="" class="btn btn-success btn-round ml-auto" data-original-title="Kembalikan">
+														<button type="button" data-toggle="tooltip" title="" onclick="showSweetAlertPerpanjang()" class="btn btn-success btn-round ml-auto" data-original-title="Perpanjang" {{$row->status ? 'disabled' :''}}>
 															Perpanjang
 														</button>
 													</a>
 													<a href="/peminjamandanpengembalian-mandiri/delete/{{ $row->id }}">
-                                                    <button type="button" data-toggle="tooltip" title="" class="btn btn-link btn-danger" data-original-title="Hapus">
+                                                    <button type="button" data-toggle="tooltip" title="" onclick="showSweetAlert()" class="btn btn-link btn-danger" data-original-title="Hapus">
                                                         <i class="fa-solid fa-trash-can"></i>
                                                     </button>
 													</a>
@@ -255,7 +257,7 @@
 										<label>Nama</label>
 									</div>
 									<div class="col-md-9">
-										<input id="addName" name="nama" type="text" class="form-control" placeholder="">
+										<input id="addName" name="nama" type="text" class="form-control" placeholder="" >
 									</div>
 								</div>
 							</div>	
@@ -265,12 +267,17 @@
 										<label>No Panggil</label>
 									</div>
 									<div class="col-md-9">
-										<input type="text" name="id_buku" id="addName" >
-										{{-- <input id="addName" name="nama" type="text" class="form-control" placeholder=""> --}}
+										<input id="addName" name="no_panggil" type="text" class="form-control" placeholder="">
+										{{-- <select name="no_panggil" id="addName" class="form-select">
+											<option value="">pilih</option>
+											@foreach ($no_panggil as $np)
+											<option value="{{$np->no_panggil}}">{{$np->no_panggil}}</option>
+											@endforeach
+										</select> --}}
 									</div>
 								</div>
 							</div>	
-							<input type="hidden" name="id_buku" id="addName" value="{{$judul_buku[0]->id}}" >
+							<input type="hidden" name="id_buku" id="addName" value="{{$judul_buku[0]->id ?? ''}}" >
 							<div class="col-sm-12 mb-3">
 								<div class="row ">
 									<div class="col-md-3 d-flex align-items-center">
@@ -278,7 +285,7 @@
 									</div>
 									<div class="col-md-9">
 										{{-- <input id="addName" type="text" class="form-control" placeholder="fill name"> --}}
-										<select name="judul" id="addName">
+										<select name="judul" id="addName" class="form-select" >
 											<option value="">pilih</option>
 											@foreach ($judul_buku as $jb)
 											<option value="{{$jb->judul}}">{{$jb->judul}}</option>
@@ -299,7 +306,7 @@
 							</div>
 						</div>
 						<div class="modal-footer no-bd">
-							<button type="submit" class="btn btn-primary">Tambah</button>
+							<button type="submit" onclick="showSweetAlertTambah()" class="btn btn-primary">Tambah</button>
 							<button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
 						</div>
 					</form>
@@ -498,3 +505,73 @@
 </div>
 </body>
 </html>
+<script>
+	function showSweetAlert() {
+		swal({
+			title: 'HAPUS DATA',
+			text: 'Data Berhasil di Hapus',
+			icon: 'success',
+			buttons: {
+				cancel: {
+					text: 'OK',
+					value: null,
+					visible: true,
+					className: 'btn btn-primary'
+				}
+			}
+		});
+	}
+
+	function showSweetAlertTambah() {
+		swal({
+			title: 'TAMBAH DATA',
+			text: 'Data Berhasil di Tambah',
+			icon: 'success',
+			buttons: {
+				cancel: {
+					text: 'OK',
+					value: null,
+					visible: true,
+					className: 'btn btn-primary'
+				}
+			}
+		});
+	}
+
+	function showSweetAlertKembali() {
+		swal({
+			title: 'KEMBALI',
+			text: 'Buku Telah di Kembalikan',
+			icon: 'success',
+			buttons: {
+				cancel: {
+					text: 'OK',
+					value: null,
+					visible: true,
+					className: 'btn btn-primary'
+				}
+			}
+		});
+	}
+
+	function showSweetAlertPerpanjang() {
+		swal({
+			title: 'PERPANJANG',
+			text: 'Tanggal Berhasil di Perpanjang',
+			icon: 'success',
+			buttons: {
+				cancel: {
+					text: 'OK',
+					value: null,
+					visible: true,
+					className: 'btn btn-primary'
+				}
+			}
+		});
+	}
+</script>
+
+<script>
+	function display
+	element.style.display = "none";
+</script>

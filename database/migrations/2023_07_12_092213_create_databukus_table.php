@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('kategori_buku');
             $table->string('ISBN');
             $table->string('no_panggil');
-            $table->string('stok');
+            $table->integer('stok')->default(0);
             $table->string('sumber');
 
             $table->timestamps();
@@ -37,5 +37,6 @@ return new class extends Migration
     public function down()
     {
         Schema::dropIfExists('databukus');
+        
     }
 };

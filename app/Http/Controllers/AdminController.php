@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+
 use Illuminate\Http\Request;
 use App\Models\Databuku;
 use App\Models\DataAnggota;
@@ -26,9 +27,11 @@ class AdminController extends Controller
     /*data buku*/
     public function DataBuku()
     {
-       $data_buku = DataBuku::all();
+       $data_buku = Databuku::all();
+       
         return view('data-buku',['databukus'=>$data_buku]);
     }
+
     /*create*/
     public function TambahDataBuku(Request $request)
     {
@@ -38,13 +41,13 @@ class AdminController extends Controller
     }
     /*update*/
     public function UpdateDataBuku (Request $request, $id) {
-        $data_buku = DataBuku::find($id);
+        $data_buku = Databuku::find($id);
         $data_buku -> update($request->all());
         return redirect()->route('data-buku');
     }
     /*delete*/
     public function DeleteDataBuku($id){
-        $data_databuku = DataBuku::find($id);
+        $data_databuku = Databuku::find($id);
         $data_databuku -> delete();
         return redirect()->route('data-buku');
     }
@@ -109,19 +112,9 @@ class AdminController extends Controller
     public function PeminjamandanPengembalianMandiri()
     {
         $judul_buku = Databuku::get();
+        $no_panggil = Databuku::get();
         // dd($judul_buku);
         $pp_mandiri = PpMandiri::all();
-        // Hitung denda untuk setiap peminjaman
-        foreach ($pp_mandiri as $pinjam_mandiri) {
-            $tgl_pinjam = Carbon::parse($pinjam_mandiri->tgl_pinjam);
-            $sekarang = Carbon::now();
-            $selisihHari = $sekarang->diffInDays($tgl_pinjam);
-
-            // Denda mulai dihitung setelah 3 hari sejak tanggal peminjaman
-            $denda = max(0, $selisihHari - 3) * 1000;
-            $pinjam_mandiri->denda = $denda;
-            $pinjam_mandiri->save();
-        }
         return view('peminjamandanpengembalian-mandiri',compact('judul_buku','pp_mandiri'));
     }
 
@@ -136,6 +129,7 @@ class AdminController extends Controller
         // kembalikan
         public function KembalikanMandiri($id)
         {
+            
             // Cari peminjaman berdasarkan ID
             $pinjam_mandiri = PpMandiri::findOrFail($id);
 
@@ -148,6 +142,19 @@ class AdminController extends Controller
             }
         
             $pinjam_mandiri->save();
+
+            $pp_mandiri = PpMandiri::all();
+            // Hitung denda untuk setiap peminjaman
+            foreach ($pp_mandiri as $pinjam_mandiri) {
+                $tgl_pinjam = Carbon::parse($pinjam_mandiri->tgl_pinjam);
+                $sekarang = Carbon::now();
+                $selisihHari = $sekarang->diffInDays($tgl_pinjam);
+    
+                // Denda mulai dihitung setelah 3 hari sejak tanggal peminjaman
+                $denda = max(0, $selisihHari - 3) * 1000;
+                $pinjam_mandiri->denda = $denda;
+                $pinjam_mandiri->save();
+            }
 
             // Redirect ke halaman sebelumnya atau halaman yang sesuai
             return redirect()->route('pinjam-mandiri');
@@ -231,4 +238,8 @@ class AdminController extends Controller
     {
         return view('laporan');
     }
+
+
+    
+
 }
